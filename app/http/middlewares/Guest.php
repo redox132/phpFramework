@@ -7,8 +7,8 @@ class Guest
 
     static public function access() :void 
     {
-        if ( !isset($_SESSION['user']) ) {
-            redirect('/signup');
+        if ( isset($_SESSION['user']) ) {
+            redirect('/');
             exit();
         }
     }
