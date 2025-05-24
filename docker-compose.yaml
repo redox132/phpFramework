@@ -24,14 +24,14 @@ services:
   mysql:
     image: mysql:latest
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "${MYSQL_PORT}:3306"
+      - "${DB_PORT}:3306"
     volumes:
-      - db_data:/var/lib/mysql
+      - db_data_for_note_app:/var/lib/mysql
     networks:
       - noteApp-network
 
@@ -40,4 +40,4 @@ networks:
 
 
 volumes:
-  db_data:
+  db_data_for_note_app:

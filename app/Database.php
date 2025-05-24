@@ -1,9 +1,17 @@
 <?php
 
-namespace App\Database;
+namespace App;
 
 use PDO;
 use PDOException;
+
+require_once __DIR__ . '/../vendor/autoload.php'; // Adjust path if needed
+
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../'); // Path to your project root
+$dotenv->load();
+
 
 class Connection 
 {
@@ -11,6 +19,7 @@ class Connection
 
     public function __construct() 
     {
+        
         if (self::$pdo === null) {
             try {
                 $host = getenv('DB_HOST');
