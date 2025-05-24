@@ -27,10 +27,10 @@ class Connection
         }
     }
 
-    public static function get(): PDO
+    public static function connection(): PDO
     {
         if (self::$pdo === null) {
-            new self(); // Trigger constructor
+            new self(); // we trigger the contructor if the pdo is null. Mostly, it's triggred automatically
         }
 
         return self::$pdo;
@@ -38,7 +38,7 @@ class Connection
 
     public static function query(string $sql, array $params = [])
     {
-        $stmt = self::get()->prepare($sql);
+        $stmt = self::connection()->prepare($sql);
         $stmt->execute($params);
         return $stmt;
     }
