@@ -1,0 +1,43 @@
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8000:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - .:/usr/share/nginx/html
+    depends_on:
+      - php
+    networks:
+      - noteApp-network
+
+  php:
+    build:
+      context: ./php
+    volumes:
+      - .:/usr/share/nginx/html
+    env_file:
+      - .env
+    networks:
+      - noteApp-network
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${MYSQL_PORT}:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - noteApp-network
+
+networks:
+  noteApp-network:
+
+
+volumes:
+  db_data:
