@@ -3,3 +3,10 @@ An MVC framework. This is a simple note APP using php, and MySQL. This idea is q
 
 # .env
 do not forget to add the .env file for the app to run. I could upload it and this will be okay, but it is best to avoid that
+
+# composer
+you have to have composer installed locally. I ignored it because it is not recommnded to push large folders/files. So, you have to install the vendor dependency for the app to run. Simply run:
+
+- ~$ composer init                       // if you do not hae the composer.json
+- ~$ composer install                    // for autoloading 
+- ~$ composer require vlucas/phpdotenv   // this is for .env files loader
