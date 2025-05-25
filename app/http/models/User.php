@@ -33,8 +33,8 @@ class User
         $user = Database::query("SELECT * FROM users WHERE email = :email", [':email' => $email])->fetch();
 
         if ( $user && password_verify($password, $user['password'])) {
-            echo "User has been verified";
             SessionController::authenticate($user);
+            redirect();
         }
 
     }

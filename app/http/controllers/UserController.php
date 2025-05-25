@@ -16,8 +16,4 @@ class UserController
        User::authenticate($email, $password);
     }
 
-    static public function destroy( array $user ) 
-    {
-        
-    }
 }

@@ -31,6 +31,15 @@ class SessionController
     {
         $_SESSION = [];
         session_destroy();
+
+      // Expire the cookie
+        if (isset($_COOKIE[session_name()])) {
+            setcookie(session_name(), '', time() - 3600, '/');
+            unset($_COOKIE[session_name()]); // Optional: clean up the superglobal
+        }
+
+        redirect();
+
     }
    
 }

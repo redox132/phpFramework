@@ -19,6 +19,11 @@ class Router
         return $this->addRoute('POST', $uri, $controller);
     }
 
+      public function delete(string $uri, string $controller)
+    {
+        return $this->addRoute('DELETE', $uri, $controller);
+    }
+
     public function only($state)
     {
         $lastIndex = array_key_last($this->routes);
