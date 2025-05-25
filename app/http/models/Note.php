@@ -33,4 +33,24 @@ class Note
     {
         return Database::query("SELECT * FROM notes")->fetchALL();
     }
+
+    static public function deleteNote( int $id, int $userIid) :void 
+    {
+        Database::query("DELETE FROM notes WHERE id = :id and user_id = :userId", 
+        [
+            ':id' => $id,
+            ':userId' => $userIid,
+        ]);
+    } 
+
+    static public function editNote( int $id, int $userIid, ?string $title, ?string $note) :void 
+    {
+        Database::query("UPDATE notes SET title = :title, note = :note WHERE id = :id and user_id = :user_id", [
+            'id' => $id,
+            'user_id' => $userIid,
+            ':title' => $title,
+            ':note' => $note,
+        ]);
+    } 
+
 }

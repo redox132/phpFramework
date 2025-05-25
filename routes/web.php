@@ -8,3 +8,5 @@ $router->post('/login', 'app/http/controllers/actions/login.php')->only('guest')
 $router->delete('/logout', 'app/http/controllers/actions/logout.php')->only('auth');
 
 $router->post('/addNote', 'app/http/controllers/actions/note/add.php')->only('auth');
+$router->delete('/deleteNote', 'app/http/controllers/actions/note/destroy.php')->only('auth');
+$router->put('/editNote', 'app/http/controllers/actions/note/edit.php')->only('auth');

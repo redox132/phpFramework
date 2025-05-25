@@ -19,10 +19,22 @@ class Router
         return $this->addRoute('POST', $uri, $controller);
     }
 
-      public function delete(string $uri, string $controller)
+    public function delete(string $uri, string $controller)
     {
         return $this->addRoute('DELETE', $uri, $controller);
     }
+
+    public function put(string $uri, string $controller)
+    {
+        return $this->addRoute('PUT', $uri, $controller);
+    }
+
+    public function patch(string $uri, string $controller)
+    {
+        return $this->addRoute('PATCH', $uri, $controller);
+    }
+
+    
 
     public function only($state)
     {
