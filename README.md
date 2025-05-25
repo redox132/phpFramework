@@ -1,12 +1,17 @@
-# ABout
-An MVC framework. This is a simple note APP using php, and MySQL. This idea is quite simple but the structure of the project is what matter the most. I created this note APP just to build and PHP framework (MVC) on  top of it. This project structure is quite similar to laravel's structure. This stucture is 100% OOP, routed using a Router, every request has it's contoller and a corresponding view, it made it also supports all methods (get and post are supported by default, but i aslo make it support delete, patch, and put), and it also supports Middlwares for autintication,. Besides, it is fully dockerized and can run every where.
+# About
 
+An MVC framework. This is a simple note app using PHP and MySQL. The idea is quite simple, but the structure of the project is what matters most. I created this note app as a base to build a PHP framework (MVC) on top of it. The project structure is quite similar to Laravel's.
+
+This structure is 100% OOP, routed using a Router. Every request has its own controller and a corresponding view. It also supports all HTTP methods (GET and POST by default, and I also added support for DELETE, PATCH, and PUT). Middleware for authentication is also supported.
+
+Besides that, it is fully Dockerized and can run anywhere.
 # .env
-do not forget to add the .env file for the app to run. I could upload it and this will be okay, but it is best to avoid that
 
-# composer
-you have to have composer installed locally. I ignored it because it is not recommnded to push large folders/files. So, you have to install the vendor dependency for the app to run. Simply run:
+Do not forget to add the .env file for the app to run. I could upload it, and that would be fine, but it's best to avoid that.
+# Composer
 
-- ~$ composer init                       // if you do not hae the composer.json
-- ~$ composer install                    // for autoloading 
-- ~$ composer require vlucas/phpdotenv   // this is for .env files loader
+You must have Composer installed locally. I ignored the vendor/ folder because it's not recommended to push large folders/files to version control. To install dependencies and get the app running, simply run:
+
+~$ composer init                        # If you don't have composer.json
+~$ composer install                     # For autoloading
+~$ composer require vlucas/phpdotenv    # To load .env files
