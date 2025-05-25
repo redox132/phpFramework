@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 use App\Http\Models\User;
-use App\Http\Controllers\SessionContoller;
-use App\Database;
-
 
 class UserController
 {
-    static public function auth( array $user ) {
-        
+
+    static public function registerUser( string $name, string $email, string $password) 
+    {
+        User::registerUser($name, $email, $password);
     }
 
-     static public function destroy( array $user ) {
+    static public function authenticate( string $email, string $password ) 
+    {
+       User::authenticate($email, $password);
+    }
+
+    static public function destroy( array $user ) 
+    {
         
     }
 }

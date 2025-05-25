@@ -13,6 +13,11 @@ class Router
     {
         return $this->addRoute('GET', $uri, $controller);
     }
+    
+    public function post(string $uri, string $controller)
+    {
+        return $this->addRoute('POST', $uri, $controller);
+    }
 
     public function only($state)
     {

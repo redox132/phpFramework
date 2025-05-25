@@ -1,6 +1,7 @@
 <?php
 
-
+session_name('auth_sess');
+session_start();
 
 require __DIR__ . "/../" . "helpers/functions.php";
 

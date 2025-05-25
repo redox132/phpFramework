@@ -13,7 +13,7 @@ $dotenv = Dotenv::createImmutable(__DIR__ . '/../'); // Path to your project roo
 $dotenv->load();
 
 
-class Connection 
+class Database
 {
     private static ?PDO $pdo = null;
 
@@ -30,6 +30,7 @@ class Connection
                 $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
                 self::$pdo = new PDO($dsn, $user, $password);
                 self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                self::$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
                 die("Database connection failed: " . $e->getMessage());
             }

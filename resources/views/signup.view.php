@@ -1,3 +1,13 @@
+<?php
+
+
+use App\Database;
+
+$connected = false;
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,23 +25,44 @@
       <!-- Name -->
       <div>
         <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-        <input type="text" id="name" name="name" required
+        <input type="text" id="name" name="name" 
                class="mt-1 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
       </div>
 
       <!-- Email -->
       <div>
         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-        <input type="email" id="email" name="email" required
+        <input type="email" id="email" name="email" 
                class="mt-1 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
       </div>
 
       <!-- Password -->
       <div>
         <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-        <input type="password" id="password" name="password" required
+        <input type="password" id="password" name="password" 
                class="mt-1 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
       </div>
+
+
+
+       <?php if (isset( $_SESSION['success'])) : ?>
+			<p class="text-green-700">Account created successfully. You can now log in.</p>
+            <?php 
+				unset($_SESSION['success']);
+             ?>
+        <?php endif ?>
+
+       <?php if (!empty($_SESSION['signupErrors'])) : ?>
+          <div class="mb-4 text-red-600 bg-red-100 p-3 rounded">
+              <ul class="list-disc pl-5">
+                  <?php foreach ($_SESSION['signupErrors'] as $error) : ?>
+                      <li><?= htmlspecialchars($error) ?></li>
+                  <?php endforeach; ?>
+              </ul>
+          </div>
+          <?php unset($_SESSION['signupErrors']); ?>
+      <?php endif; ?>
+
 
       <!-- Submit -->
       <button type="submit"

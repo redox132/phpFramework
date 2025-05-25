@@ -7,7 +7,7 @@ function basePath(string $path = '')
 }
 
 
-function redirect(?string $path = '/')
+function redirect(string $path = '/')
 {
     header("Location: $path" );
     exit();
