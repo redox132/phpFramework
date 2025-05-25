@@ -1,3 +1,7 @@
+<?php
+  use App\Http\Models\Note;
+  $notes = Note::all();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,27 +42,32 @@
   </header>
 
   <!-- Notes Grid -->
-  <main class="p-6 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+<main class="p-6 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+  <?php foreach ($notes as $note): ?>
     <div class="bg-white rounded-xl shadow p-4 relative">
-      <h2 class="font-semibold text-lg mb-2">Sample Note</h2>
-      <p class="text-sm text-gray-600">This is a sample note content...</p>
+      <h2 class="font-semibold text-lg mb-2"><?= htmlspecialchars($note['title']) ?></h2>
+      <p class="text-sm text-gray-600"><?= nl2br(htmlspecialchars($note['note'])) ?></p>
       <div class="absolute top-2 right-2 space-x-2 text-sm">
-        <button onclick="fillEditForm('Sample Note', 'This is a sample note content...')" class="text-blue-600 hover:underline">Edit</button>
+        <button 
+          onclick="fillEditForm('<?= htmlspecialchars(addslashes($note['title'])) ?>', '<?= htmlspecialchars(addslashes($note['note'])) ?>')" 
+          class="text-blue-600 hover:underline">Edit</button>
         <button onclick="confirmDelete()" class="text-red-500 hover:underline">Delete</button>
       </div>
     </div>
-  </main>
+  <?php endforeach; ?>
+</main>
+
 
   <!-- Add Modal -->
   <div id="addModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
     <div class="bg-white p-6 rounded-xl w-full max-w-md">
       <h2 class="text-xl font-semibold mb-4">Add Note</h2>
-      <form>
-        <input type="text" placeholder="Title" class="w-full mb-3 p-2 border rounded" required>
-        <textarea placeholder="Content" class="w-full mb-3 p-2 border rounded" required></textarea>
+      <form method="post" action="/addNote">
+        <input type="text" placeholder="Title" name="title" class="w-full mb-3 p-2 border rounded" required>
+        <textarea placeholder="Content" name="note" class="w-full mb-3 p-2 border rounded" required></textarea>
         <div class="flex justify-end gap-2">
           <button type="button" onclick="closeModal('addModal')" class="px-4 py-2 bg-gray-300 rounded">Cancel</button>
-          <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Save</button>
+          <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Add</button>
         </div>
       </form>
     </div>
