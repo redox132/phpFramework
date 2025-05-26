@@ -1,17 +1,19 @@
 # About
 
-An MVC framework. This is a simple note app using PHP and MySQL. The idea is quite simple, but the structure of the project is what matters most. I created this note app as a base to build a PHP framework (MVC) on top of it. The project structure is quite similar to Laravel's.
+This is a simple note app built with PHP and MySQL, structured as an MVC framework inspired by Laravel. While the app’s core functionality is straightforward, the focus is on the project structure as a solid foundation for building a PHP MVC framework.
 
-This structure is 100% OOP, routed using a Router. Every request has its own controller and a corresponding view. It also supports all HTTP methods (GET and POST by default, and I also added support for DELETE, PATCH, and PUT). Middleware for authentication is also supported.
+The architecture is 100% object-oriented, featuring a Router that directs each request to its dedicated controller and view. It supports all common HTTP methods (GET, POST, DELETE, PATCH, PUT) and includes middleware for authentication.
 
-Besides that, it is fully Dockerized and can run anywhere.
-# .env
+The project uses a hybrid routing system, blending MVC-style controllers with file-based route handlers, providing flexibility and scalability.
 
-Do not forget to add the .env file for the app to run. I could upload it, and that would be fine, but it's best to avoid that.
-# Composer
+The entire app is fully dockerized, ensuring it can run consistently across any environment.
 
-You must have Composer installed locally. I ignored the vendor/ folder because it's not recommended to push large folders/files to version control. To install dependencies and get the app running, simply run:
+# Setup
 
-~$ composer init                        # If you don't have composer.json
-~$ composer install                     # For autoloading
-~$ composer require vlucas/phpdotenv    # To load .env files
+    .env: Remember to add your .env file (not included for security reasons)
+
+    Composer: make sure composer is installed locally. The vendor/ folder is ignored for version control. To install dependencies, run the following commands:
+
+composer init                       # If composer.json doesn’t exist
+composer install                    # To install dependencies and autoloading
+composer require vlucas/phpdotenv   # For loading .env files
