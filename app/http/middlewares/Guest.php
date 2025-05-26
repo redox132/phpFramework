@@ -4,13 +4,11 @@ namespace App\Http\Middlewares;
 
 class Guest 
 {
-
-    static public function access() :void 
+    public static function access() :void 
     {
-        if ( isset($_SESSION['user']) ) {
+        if (isset($_SESSION['user'])) {  // IS logged in
             redirect('/');
             exit();
         }
     }
-    
 }

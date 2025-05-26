@@ -1,6 +1,8 @@
 <?php
 
 namespace App;
+use App\Http\Middlewares\Auth;
+use App\Http\Middlewares\Guest;
 
 class Router 
 {
@@ -44,6 +46,7 @@ class Router
             'method' => strtoupper($method),
             'uri' => trim($uri, '/'),
             'controller' => $controller,
+            'only' => null
         ];
 
         return $this;
@@ -57,6 +60,15 @@ class Router
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === $method) {
                 $controller = $route['controller'];
+
+                if ($route['only'] == 'auth') {
+                    Auth::access();
+                }
+
+                
+                if ($route['only'] == 'guest') {
+                    Guest::access();
+                }
 
                 if (is_array($controller)) {
                     [$class, $action] = $controller;

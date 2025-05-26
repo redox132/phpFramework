@@ -43,7 +43,7 @@
             </button>
             <form action="/logout" method="post">
                 <input type="hidden" name="_method" value="DELETE">
-                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Logout</button>
+                <input type="submit" value="Logout" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
             </form>
         </div>
     </header>
