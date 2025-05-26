@@ -1,7 +1,7 @@
 <?php
 
 
-function basePath(string $path = '')
+function view(string $path = '')
 {
     return __DIR__ . '/../' . $path;
 }

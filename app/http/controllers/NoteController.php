@@ -7,9 +7,9 @@ use App\Http\Models\Note;
 
 class NoteController
 {
-    static public function addNote(int $user_id, string $title, string $note) 
+    static public function addNote() 
     {
-        Note::addNote($user_id, $title, $note);
+        Note::addNote();
     }
 
     static public function deleteNote( int $id, int $userIid) :void 

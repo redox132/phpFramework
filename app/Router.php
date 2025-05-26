@@ -2,39 +2,34 @@
 
 namespace App;
 
-use App\Http\Middlewares\Guest;
-use App\Http\Middlewares\Auth;
-
 class Router 
 {
     protected array $routes = [];
 
-    public function get(string $uri, string $controller)
+    public function get(string $uri, string|array $controller)
     {
         return $this->addRoute('GET', $uri, $controller);
     }
     
-    public function post(string $uri, string $controller)
+    public function post(string $uri, string|array $controller)
     {
         return $this->addRoute('POST', $uri, $controller);
     }
 
-    public function delete(string $uri, string $controller)
+    public function delete(string $uri, string|array $controller)
     {
         return $this->addRoute('DELETE', $uri, $controller);
     }
 
-    public function put(string $uri, string $controller)
+    public function put(string $uri, string|array $controller)
     {
         return $this->addRoute('PUT', $uri, $controller);
     }
 
-    public function patch(string $uri, string $controller)
+    public function patch(string $uri, string|array $controller)
     {
         return $this->addRoute('PATCH', $uri, $controller);
     }
-
-    
 
     public function only($state)
     {
@@ -43,13 +38,12 @@ class Router
         return $this;
     }
 
-    public function addRoute(string $method, string $uri, string $controller)
+    public function addRoute(string $method, string $uri, string|array $controller)
     {
         $this->routes[] = [
             'method' => strtoupper($method),
             'uri' => trim($uri, '/'),
             'controller' => $controller,
-            'only' => null
         ];
 
         return $this;
@@ -62,17 +56,20 @@ class Router
 
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === $method) {
+                $controller = $route['controller'];
 
-                // Apply middleware *only after matching the route*
-                if ($route['only'] === 'auth') {
-                    Auth::access(); // Require login
+                if (is_array($controller)) {
+                    [$class, $action] = $controller;
+                    if (class_exists($class) && method_exists($class, $action)) {
+                        return (new $class)->$action();
+                    }
                 }
 
-                if ($route['only'] === 'guest') {
-                    Guest::access(); // Block if already logged in
+                if (is_string($controller)) {
+                    return require view($controller);
                 }
 
-                return require basePath($route['controller']);
+                throw new \Exception("Invalid route handler.");
             }
         }
 

@@ -36,7 +36,7 @@
 
     <!-- Header -->
     <header class="bg-white shadow-md p-4 flex justify-between items-center">
-        <h1 class="text-2xl font-bold text-blue-600">Hello <?php echo $_SESSION['user']['name'] ?>!</h1>
+        <h1 class="text-2xl font-bold text-blue-600">Hello <?php echo $_SESSION['user']['name'] ?? '' ?>!</h1>
         <div class="flex gap-4">
             <button onclick="openModal('addModal')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                 + New Note
