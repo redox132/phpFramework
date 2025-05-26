@@ -10,10 +10,10 @@ The entire app is fully dockerized, ensuring it can run consistently across any 
 
 # Setup
 
-    .env: Remember to add your .env file (not included for security reasons)
+    .env    Remember to add your .env file (not included for security reasons)
 
     Composer: make sure composer is installed locally. The vendor/ folder is ignored for version control. To install dependencies, run the following commands:
 
-composer init                       # If composer.json doesn’t exist
-composer install                    # To install dependencies and autoloading
-composer require vlucas/phpdotenv   # For loading .env files
+- ~$ composer init                       # If composer.json doesn’t exist
+- ~$ composer install                    # To install dependencies and autoloading
+- ~$ composer require vlucas/phpdotenv   # For loading .env files
