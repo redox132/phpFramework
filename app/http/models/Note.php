@@ -3,10 +3,18 @@
 namespace App\Http\Models;
 
 use App\Database;
+use App\http\Request;
 
 
 class Note
 {
+
+    // public Request $request;
+
+    // public function __construct(Request $request)
+    // {
+    //     $this->request = $request;
+    // }
 
     static public function addNote(): void
     {
